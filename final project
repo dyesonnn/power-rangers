@@ -1,0 +1,72 @@
+def get_input_set(set_name):
+   
+    while True:
+        print(f"Enter elements for set {set_name} separated by space:")
+        user_input = input().strip()
+        
+        if user_input: 
+            elements = user_input.split()
+            return set(elements)
+        else:
+            print("Input cannot be empty. Please enter some elements.")
+
+def display_results(set_a, set_b, operation):
+  
+    if operation == 1:
+        union_result = set_a.union(set_b)
+        print(f"Union of A and B (A ∪ B): {union_result}")
+    
+    elif operation == 2:
+        intersection_result = set_a.intersection(set_b)
+        print(f"Intersection of A and B (A ∩ B): {intersection_result}")
+    
+    elif operation == 3:
+        diff_a_b = set_a.difference(set_b)
+        print(f"Difference A − B (A - B): {diff_a_b}")
+    
+    elif operation == 4:
+        diff_b_a = set_b.difference(set_a)
+        print(f"Difference B − A (B - A): {diff_b_a}")
+    
+    elif operation == 5:
+        is_subset_a_b = set_a.issubset(set_b)
+        print(f"Is A a subset of B (A ⊆ B)? {'Yes' if is_subset_a_b else 'No'}")
+    
+    elif operation == 6:
+        is_subset_b_a = set_b.issubset(set_a)
+        print(f"Is B a subset of A (B ⊆ A)? {'Yes' if is_subset_b_a else 'No'}")
+
+def display_menu():
+    
+    print("\nChoose the set operation you want to perform:")
+    print("1. Union of A and B (A ∪ B)")
+    print("2. Intersection of A and B (A ∩ B)")
+    print("3. Difference A − B (A - B)")
+    print("4. Difference B − A (B - A)")
+    print("5. Check if A is a subset of B (A ⊆ B)")
+    print("6. Check if B is a subset of A (B ⊆ A)")
+    print("7. Exit")
+
+def main():
+   
+    print("Set Theory Operations Demonstration")
+    
+    set_a = get_input_set("A")
+    set_b = get_input_set("B")
+    
+    while True:
+        display_menu()
+        try:
+            operation = int(input("Enter your choice (1-7): "))
+            if operation == 7:
+                print("Exiting the program.")
+                break
+            elif 1 <= operation <= 6:
+                display_results(set_a, set_b, operation)
+            else:
+                print("Invalid choice, please select a number between 1 and 7.")
+        except ValueError:
+            print("Invalid input, please enter a valid number.")
+
+if __name__ == "__main__":
+    main()
